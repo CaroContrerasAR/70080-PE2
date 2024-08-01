@@ -1,0 +1,32 @@
+[
+  {
+    "title": "first product",
+    "description": "description of product1",
+    "code": "P123",
+    "price": 15999,
+    "status": true,
+    "stock": 50,
+    "category": "Ca1",
+    "id": "yS2bCm7XwTo5ZnHF_nDc1"
+  },
+  {
+    "title": "second product",
+    "description": "description of product2",
+    "code": "P124",
+    "price": 16999,
+    "status": true,
+    "stock": 50,
+    "category": "Ca2",
+    "id": "XA4mpCZqOUqeBNScfdqcq"
+  },
+  {
+    "title": "thirth product",
+    "description": "description of product3",
+    "code": "P125",
+    "price": 17999,
+    "status": true,
+    "stock": 50,
+    "category": "Ca1",
+    "id": "cnb09Pz4laRY0Eym947mV"
+  }  
+]

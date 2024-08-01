@@ -1,0 +1,16 @@
+<h2>Crear Products</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Title: {{this.title}}</h5>
+        <p class="card-text">Descripcion: {{this.description}}</p>
+        <p class="card-text">Precio: ${{this.price}}</p>
+        <p class="card-text">Stock: {{this.stock}}</p>
+        <p class="card-text">Categoría: {{this.category}}</p>
+        <a href="http://localhost:8080/api/products/{{this._id}}" class="btn btn-primary">Ver detalles</a>
+        <button class="btn btn-danger delete-btn" data-product-id="{{this._id}}">Eliminar Producto</button>
+        <button class="btn btn-success cart-btn" data-product-id="{{this._id}}">Agregar al carrito</button>
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+{{!-- <script type="module" src="/js/realTimeProducts.js"></script> --}}
