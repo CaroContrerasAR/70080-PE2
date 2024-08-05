@@ -1,9 +1,39 @@
-<h1>Product List</h1>
+<div class="container">
 
-<div class="contenedorProductos">
-    {{#each products}}
-        <div>
-            <p> {{this.title}} - {{this.description}} - <strongs> $ {{this.price}} </strongs><button>Eliminar</button></p>
-        </div>
-    {{/each}}
-</div>
+    <h1>Products List</h1>
+
+    <table class="table">
+  <thead>
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">title</th>
+        <th scope="col">description</th>
+        <th scope="col">price</th>
+        <th scope="col">status</th>
+        <th scope="col">category</th>
+        <th scope="col">code</th>
+        <th scope="col">stock</th>
+        <th scope="col">thumbnail</th>
+    </tr>
+  </thead>
+  <tbody>
+            {{#each products}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{title}}</td>
+            <td>{{description}}</td>
+            <td>{{price}}</td>
+            <td>{{status}}</td>
+            <td>{{category}}</td>
+            <td>{{code}}</td>
+            <td>{{stock}}</td>
+            <td><button type="button" class="btn btn-primary">Detail</button></td>
+            {{#thumbnail}}
+                <td> <img style="width: 40px; height: 40px;" src={{this}}>  </td>
+            {{/thumbnail}}
+        </tr>
+            {{/each}}
+  </tbody>
+</table>
+
+<script src="/js/main.js"></script>
