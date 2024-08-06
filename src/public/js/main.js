@@ -1,82 +1,69 @@
-// const socket = io();
-
-// socket.on("productos", (data)=>{
-//     //console.log(data);
-//     renderProductos(data)
-// })
-
-// const renderProductos = (productos)=>{
-//     const contenedorProductos =document.getElementById("contenedorProductos")
-//     contenedorProductos.innerHTML= ""
-
-//     productos.forEach(item => {
-//         const card = document.createElement("div")
-//         card.innerHTML =`   <p>${item.id}</p>
-//                             <p>${item.title}</p>
-//                             <p>${item.price}</p>
-//                             <button>Eliminar</button>
-//                             `
-//         contenedorProductos.appendChild(card)
-
-//         //vamos a darle vida al boton de eliminar
-//         card.querySelector("button").addEventListener("click", ()=>{
-//             eliminarProducto(item.id)
-//         })
-//     });
-// }
-
-//function para enviar el id al backend
-// const eliminarProducto = (id)=>{
-//     socket.emit("eliminarProducto", id)
-// }
-//---------------------------------
-
-const socket = io()
+const socket = io();
 const tabla = document.getElementById('tabla');
-//const btnCreateProduct = document.getElementById('btnCreateP');
-const btnDelete = document.getElementById('btnDelete')
+const form = document.querySelector('form');
 
-socket.on('connect', ()=>{
-    console.log('Connected Customer')
-})
+// Manejo de conexión con el servidor
+socket.on('connect', () => {
+    console.log('Connected to server');
+});
 
-socket.on('products', (data)=>{
-    // console.log(data)
-    let conjunto = ''
-     data.map((e)=> {
-        conjunto += 
-         `
-            <tr>
-              <th scope="row">${e.id}</th>
-              <td>${e.title}</td>
-              <td>${e.description}</td>
-              <td>$${e.price}</td>
-              <td colspan="2">${e.stock}</td>
-              <td>
-                <img style="height: 18px;" src="${e.thumbnail}" >
-              </td>
-              <td>
-                <button type="button" id="btnDelete" class="btn btn-danger btn-sm" onclick="deleteProduct(${e.id})" >Delete</button>
-              </td>
-            </tr>
-         `
-        tabla.innerHTML = conjunto
-    })
-})
-
-//function para enviar el id al backend
-const deleteProduct = (id)=>{
-    socket.emit("deleteProduct", id)
+// Actualizar la tabla con datos de productos
+socket.on('products', (data) => {
+    console.log(data);
+    // Construir el HTML de la tabla
+    const rows = data.map((e) => `
+        <tr>
+          <th scope="row">${e.id}</th>
+          <td>${e.title}</td>
+          <td>${e.description}</td>
+          <td>$${e.price}</td>
+          <td>${e.stock}</td>
+          <td>
+            <img style="height: 18px;" src="${e.thumbnail}" alt="${e.title}">
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger btn-sm btnDelete" data-id="${e.id}">Delete</button>
+          </td>
+        </tr>
+    `).join('');
     
-}
+    tabla.innerHTML = rows;
 
-const addProduct = (products)=>{
-    socket.emit("addProduct", products)
-    
-}
-// const deleteProduct = async (id) =>{
-//     fetch(`http://localhost:8080/api/products/${id}`, {
-//         method: 'DELETE',
+    // Adjuntar eventos a los botones de eliminación
+    document.querySelectorAll('.btnDelete').forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            deleteProduct(id);
+        });
+    });
+});
+
+// Función para emitir la eliminación de productos
+const deleteProduct = (id) => {
+    socket.emit('deleteProduct', id);
+};
+
+// Función para emitir la adición de productos
+const addProduct = (product) => {
+    socket.emit('addProduct', product);
+    console.log(product);
+};
+
+// Manejo del formulario de productos
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const product = Object.fromEntries(formData);
+    product.price = parseFloat(product.price);
+    product.stock = parseInt(product.stock, 10);
+    console.log('Form data:', product);
+    addProduct(product);
+    //form.reset(); // Opcional: resetear el formulario después de enviar
+});
+
+// const addProduct = async (products) =>{
+//     fetch(`http://localhost:8080/api/products`, {
+//         method: 'POST',
 //     })
 //     .then(res => res.json())
 //     .then(res => console.log(res))

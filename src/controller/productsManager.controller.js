@@ -44,9 +44,12 @@ class ProductManager {
             return `Code ${product.code} already exists`
         }
         product.id = id
+        //product.price = parseFloat(product.price)
+        //product.stock = parseInt(product.stock,10)
+
         let productsAll = [...productsOld, product]
         await this.writeProducts(productsAll)
-        return 'product added successfully'      
+        // return 'product added successfully'      
     }
     
     async getProducts () {

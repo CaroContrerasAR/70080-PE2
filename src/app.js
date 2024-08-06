@@ -43,46 +43,17 @@ const httpServer = app.listen(PORT, () => {
 //Instancia de websocket desde el lado del backend
 const io = new Server(httpServer)
 
-//----ANTES----
-// io.on("connection",async(socket)=>{
-//     console.log("Un cliente se conecto");
-//     socket.emit("productos", await manager.getProducts())   //cambio Nombre
-        
-//     socket.on("eliminarProducto", async(id)=>{
-//         await manager.deleteProducts(id)
-
-//         io.sockets.emit("productos",await manager.getProducts())
-//     })
-
-// })
-
-//----AHORA----
 io.on("connection",async(socket)=>{
     console.log("A customer logged in");
-    socket.emit("products", await manager.getProducts())   //cambio Nombre
+    socket.emit("products", await manager.getProducts()) 
         
     socket.on("deleteProduct", async(id)=>{
         await manager.deleteProducts(id)
-
         io.sockets.emit("products",await manager.getProducts())
     })
 
     socket.on("addProduct", async(products)=>{
         await manager.addProduct(products)
-
         io.sockets.emit("products",await manager.getProducts())
     })
-
 })
-
-// io.on("connection",async(socket)=>{
-//     console.log("Un cliente se conecto");
-//     socket.emit("productos", await manager.getProducts())
-        
-//     socket.on("deleteProduct", async(id)=>{
-//         await manager.deleteProducts(id)
-
-//         io.sockets.emit("productos",await manager.getProducts())
-//     })
-
-// })
