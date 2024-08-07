@@ -9,7 +9,7 @@ socket.on('connect', () => {
 
 // Actualizar la tabla con datos de productos
 socket.on('products', (data) => {
-    console.log(data);
+    //console.log(data);
     // Construir el HTML de la tabla
     const rows = data.map((e) => `
         <tr>
@@ -43,12 +43,6 @@ const deleteProduct = (id) => {
     socket.emit('deleteProduct', id);
 };
 
-// Función para emitir la adición de productos
-const addProduct = (product) => {
-    socket.emit('addProduct', product);
-    console.log("Info a agrgar", product);
-};
-
 // Manejo del formulario de productos
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -56,15 +50,29 @@ form.addEventListener('submit', (event) => {
     const product = Object.fromEntries(formData);
     product.price = parseFloat(product.price);
     product.stock = parseInt(product.stock, 10);
-    console.log('Form data:', product);
+    //console.log('Form data:', product);
     addProduct(product);
-    //form.reset(); // Opcional: resetear el formulario después de enviar
+    form.reset(); // Opcional: resetear el formulario después de enviar
 });
 
-// const addProduct = async (products) =>{
-//     fetch(`http://localhost:8080/api/products`, {
-//         method: 'POST',
-//     })
-//     .then(res => res.json())
-//     .then(res => console.log(res))
-// }
+// Función para emitir la adición de productos
+const addProduct = async (products) =>{
+    try {
+        const response = await fetch('http://localhost:8080/api/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(products)
+        });
+
+        if (response.ok) {
+            alert('product added successfully');
+            socket.emit('addProduct', products);
+        } else {
+            alert('Error adding product');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}

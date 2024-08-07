@@ -33,8 +33,8 @@ class ProductManager {
 
     async addProduct (product) {
         const id = nanoid()
-
-        if(!product.title||!product.description||!product.code||!product.price||!product.status||!product.stock||!product.category){
+        //if(!product.title||!product.description||!product.code||!product.price||!product.status||!product.stock||!product.category){
+        if(!product.title||!product.description||!product.code||!product.price||!product.stock||!product.category){
             return 'All fields are required'
         }
 
