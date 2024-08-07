@@ -27,13 +27,13 @@ app.use('/api/carts', cartRouter)
 app.use('/', viewsRouter)
 
 
-// app.get('/',(req,res)=>{
-//         res.send(`<h1>Pre-entrega 2 - Carolina Contreras</h1>`)
-// })
-    
-app.get('/', (req,res)=>{
-    res.render("index")
+app.get('/',(req,res)=>{
+        res.send(`<h1>Pre-entrega 2 - Carolina Contreras</h1>`)
 })
+    
+// app.get('/', (req,res)=>{
+//     res.render("index")
+// })
     
 //Listen
 const httpServer = app.listen(PORT, () => {
