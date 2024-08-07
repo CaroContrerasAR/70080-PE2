@@ -13,11 +13,40 @@ Este proyecto configura un servidor para trabajar con Handlebars como motor de p
 2. Navega al directorio del proyecto: cd 70080-PE2
 3. Instala dependencias: npm install
 
-## USO
+## Uso
 1. inicia el servidor: npm run dev
 2. Accede a las vistas:
     . Lista de productos: http://localhost:8080/products
     . Productos en tiempo real: http://localhost:8080/realtimeproducts
+
+## Project Tree
+70080-PE2
+├─ src
+│  ├─ controller
+│  │  ├─ cartsManager.controller.js
+│  │  └─ productsManager.controller.js
+│  ├─ data
+│  │  ├─ carts.json
+│  │  └─ products.json
+│  ├─ public
+│  │  ├─ css
+│  │  │  └─ style.css
+│  │  ├─ js
+│  │  │  └─ main.js
+│  ├─ routes
+│  │  ├─ carts.routes.js
+│  │  ├─ products.routes.js
+│  │  └─ views.routes.js
+│  ├─ views
+│  │  ├─ layouts
+│  │  │  └─ main.handlebars
+│  │  ├─ home.handlebars
+│  │  └─ realtimeproducts.handlebars
+│  └─ app.js
+├─ .gitignore
+├─ package-lock.json
+├─ package.json
+└─ Readme.md
 
 ## Licencia
 Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para obtener más información.
