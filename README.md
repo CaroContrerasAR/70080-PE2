@@ -19,34 +19,5 @@ Este proyecto configura un servidor para trabajar con Handlebars como motor de p
     . Lista de productos: http://localhost:8080/products
     . Productos en tiempo real: http://localhost:8080/realtimeproducts
 
-## Project Tree
-70080-PE2
-├─ src
-│  ├─ controller
-│  │  ├─ cartsManager.controller.js
-│  │  └─ productsManager.controller.js
-│  ├─ data
-│  │  ├─ carts.json
-│  │  └─ products.json
-│  ├─ public
-│  │  ├─ css
-│  │  │  └─ style.css
-│  │  ├─ js
-│  │  │  └─ main.js
-│  ├─ routes
-│  │  ├─ carts.routes.js
-│  │  ├─ products.routes.js
-│  │  └─ views.routes.js
-│  ├─ views
-│  │  ├─ layouts
-│  │  │  └─ main.handlebars
-│  │  ├─ home.handlebars
-│  │  └─ realtimeproducts.handlebars
-│  └─ app.js
-├─ .gitignore
-├─ package-lock.json
-├─ package.json
-└─ Readme.md
-
 ## Licencia
 Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para obtener más información.
