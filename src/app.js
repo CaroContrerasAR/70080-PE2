@@ -32,7 +32,7 @@ app.get('/',(req,res)=>{
 })
     
 // app.get('/', (req,res)=>{
-//     res.render("index")
+//     res.render("home")
 // })
     
 //Listen
@@ -57,10 +57,6 @@ io.on("connection",async(socket)=>{
         
     })
 
-    // socket.on("addProduct", async(products)=>{
-    //     await manager.addProduct(products)
-    //     io.sockets.emit("products",await manager.getProducts())
-    // })
     socket.on("addProduct", async (product) => {
         // Verificación básica de campos necesarios
         if (!product || typeof product !== 'object') {
