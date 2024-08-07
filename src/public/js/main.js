@@ -19,7 +19,7 @@ socket.on('products', (data) => {
           <td>$${e.price}</td>
           <td>${e.stock}</td>
           <td>
-            <img style="height: 18px;" src="${e.thumbnail}" alt="${e.title}">
+            <img style="height: 50px;" src="${e.thumbnail || './img/default.png'}" alt="${e.title}">
           </td>
           <td>
             <button type="button" class="btn btn-danger btn-sm btnDelete" data-id="${e.id}">Delete</button>
