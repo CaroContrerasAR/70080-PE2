@@ -46,7 +46,7 @@ const deleteProduct = (id) => {
 // Función para emitir la adición de productos
 const addProduct = (product) => {
     socket.emit('addProduct', product);
-    console.log(product);
+    console.log("Info a agrgar", product);
 };
 
 // Manejo del formulario de productos
